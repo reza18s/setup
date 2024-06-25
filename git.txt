@@ -1,0 +1,43 @@
+/// for seeing status
+git status
+/// start
+git init
+/// change the branch name to main
+git branch -M main
+/// adding file 
+git add (file name)
+git add . // "." well select all the file 
+/// for commit
+git commit -m "your message" /// the message is required
+/// connect to repo
+git remote add (name/origin) https://github/reza18s/(repoName).git
+/// push the code 
+git push -u (branch name)
+
+//////////////////////////////////////
+
+// for get the log 
+git log 
+get log --oneline // for getting the log in one line
+/// branch
+git branch //for getting the current branch
+git branch (branch name) //create new branch
+git checkout (branch name) // switch between branches
+git switch (branch name) // switch between branches
+git branch -m/-M (branch name) // rename the branch
+git branch -c/-C (branch name) // to create and switch to the new branch
+git switch -c/-C (branch name) // to create and switch to the new branch
+git checkout -b/-B (branch name) // to create and switch to the new branch
+/// remove branch
+git branch -d (branch name)
+/// merge branch
+git merge (branch name) -m "message" // to merge the selected branch with the current one
+/// compare the file in different time
+git diff (simple) (file name)
+///
+git stash // to save the working progress when switching 
+git stash pop // to restore the saved stash
+/// check the prev commit
+git checkout (commit id) // will move back to the the selected commit
+git checkout (branch name)\(HEAD~number) // to move back to main commit
+git reflog // to move back to main commit
