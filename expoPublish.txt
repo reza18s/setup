@@ -1,0 +1,26 @@
+npm install --global expo-cli eas-cli
+
+eas build:configure
+
+//eas.json
+
+{
+  "build": {
+    "preview": {
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "preview2": {
+      "android": {
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+    "preview3": {
+      "developmentClient": true
+    },
+    "production": {}
+  }
+}
+
+eas build -p android --profile preview

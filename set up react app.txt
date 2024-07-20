@@ -1,0 +1,66 @@
+npm create vite@latest
+
+cd iphone
+npm install
+/////////////////////// tailwind
+//// vite ********
+bun install -D tailwindcss postcss autoprefixer
+bunx tailwindcss init -p
+*****************or
+npm install -D tailwindcss
+npx tailwindcss init
+/////////////////
+npm install -D prettier prettier-plugin-tailwindcss
+//
+module.exports = {
+  content: [
+   "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+//index.css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+// .prettierrc
+{
+  "plugins": ["prettier-plugin-tailwindcss"]
+}
+
+///////////////////// eslint
+npm install eslint --save-dev
+npm i  eslint-config-standard eslint-plugin-tailwindcss eslint-config-prettier -D
+//vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import eslint from 'vite-plugin-eslint';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react(), eslint()],
+});
+//
+{
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "standard",
+    "plugin:react/recommended",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ],
+  "rules": {
+    "max-len": [2, 250],
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1 }],
+    "object-curly-newline": 0,
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "warn"
+  }
+}

@@ -1,0 +1,142 @@
+npx create-expo-app --template
+/////////////////////////////////////// for web 
+npm i @expo/metro-runtime react-dom react-native-web react-native-paper 
+
+//app.js
+import { NativeWindStyleSheet } from "nativewind";
+
+NativeWindStyleSheet.setOutput({
+   default: "native",
+});
+
+//webpack.config.js
+
+const createExpoWebpackConfigAsync = require("@expo/webpack-config");
+
+module.exports = async function (env, argv) {
+   const config = await createExpoWebpackConfigAsync(
+      {
+         ...env,
+         babel: {
+            dangerouslyAddModulePathsToTranspile: ["nativewind"],
+         },
+      },
+      argv,
+   );
+
+   config.module.rules.push({
+      test: /\.css$/i,
+      use: ["postcss-loader"],
+   });
+
+   return config;
+};
+////////////////////////////////////// install react-navigation
+npm install @react-navigation/native
+// expo
+npx expo install react-native-screens react-native-safe-area-context
+
+npm i @react-navigation/stack
+
+npm install @react-navigation/bottom-tabs
+
+
+/////////////////////////////////////// install styled components
+
+npm i styled-components
+
+/////////////////////////////////////// install tanstack
+
+npm i @tanstack/react-query
+
+
+const queryClient = new QueryClient()
+
+
+<QueryClientProvider client={queryClient}>
+	<app></app>
+</QueryClientProvider>
+
+
+/////////////////////////////////////// install and set up nativeWind
+
+
+npm install nativewind
+npm install --save-dev tailwindcss@3.3.2
+npm install -D prettier prettier-plugin-tailwindcss
+
+//.prettierrc
+
+{
+   "plugins": ["prettier-plugin-tailwindcss"],
+   "tabWidth": 3,
+   "singleQuote": false
+}
+// tailwind.config.js
+
+
+module.exports = {
+  content: ["./App.{js,jsx,ts,tsx}", "./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+// babel.config.js
+module.exports = function (api) {
+  api.cache(true);
+  return {
+    presets: ["babel-preset-expo"],
++   plugins: ["nativewind/babel"],
+  };
+};
+
+///////////////////////////////////////// eslint for react native
+ npm i -D eslint prettier @react-native-community/eslint-config
+
+//.eslintrc.json
+{
+   "env": {
+      "browser": true,
+      "es2021": true
+   },
+   "settings": {
+      "react": {
+         "version": "detect"
+      }
+   },
+   "extends": ["eslint:recommended", "plugin:react/recommended"],
+   "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module",
+      "ecmaFeatures": {
+         "jsx": true
+      }
+   },
+   "plugins": ["react"],
+   "rules": {
+      "react/prop-types": "off",
+      "indent": ["error", 3],
+      "react/react-in-jsx-scope": "off",
+      "quotes": ["error", "double"],
+      "semi": ["error", "always"],
+      "spaced-comment": "off",
+      "no-console": "warn",
+      "consistent-return": "off",
+      "func-names": "off",
+      "object-shorthand": "off",
+      "no-process-exit": "off",
+      "no-param-reassign": "off",
+      "no-return-await": "off",
+      "no-underscore-dangle": "off",
+      "no-unused-vars": "warn",
+      "class-methods-use-this": "off",
+      "no-undef": "off",
+      "prefer-destructuring": ["error", { "object": true, "array": false }]
+   }
+}
+////////////////////////////////////////**if your app needs a map**////////////////////////////////////
+
+npx expo i react-native-maps
+
+npm i @react-native-async-storage/async-storage
